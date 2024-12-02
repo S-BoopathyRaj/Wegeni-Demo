@@ -1,0 +1,2908 @@
+openapi: 3.0.3
+info:
+  title: 'Your App'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://gerow.test'
+paths:
+  /api/v1/register:
+    post:
+      summary: Register
+      operationId: register
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: false
+                  data: null
+                  message: 'Registered successfully! We emailed you to verify your account!'
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  data:
+                    type: string
+                    example: null
+                  message:
+                    type: string
+                    example: 'Registered successfully! We emailed you to verify your account!'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The given data was invalid.'
+                  errors:
+                    first_name:
+                      - 'The first name field is required.'
+                    last_name:
+                      - 'The last name field is required.'
+                    email:
+                      - 'The email field is required.'
+                    password:
+                      - 'The password field is required.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The given data was invalid.'
+                  errors:
+                    type: object
+                    properties:
+                      first_name:
+                        type: array
+                        example:
+                          - 'The first name field is required.'
+                        items:
+                          type: string
+                      last_name:
+                        type: array
+                        example:
+                          - 'The last name field is required.'
+                        items:
+                          type: string
+                      email:
+                        type: array
+                        example:
+                          - 'The email field is required.'
+                        items:
+                          type: string
+                      password:
+                        type: array
+                        example:
+                          - 'The password field is required.'
+                        items:
+                          type: string
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: 'The name of the user.'
+                  example: officiis
+                last_name:
+                  type: string
+                  description: 'The name of the user.'
+                  example: pariatur
+                email:
+                  type: string
+                  description: 'The email of the user.'
+                  example: harley.bechtelar@example.net
+                password:
+                  type: string
+                  description: 'The password of user to create.'
+                  example: yg|fKSL
+                phone:
+                  type: string
+                  description: 'The phone of the user.'
+                  example: est
+                password_confirmation:
+                  type: string
+                  description: 'The password confirmation.'
+                  example: autem
+              required:
+                - first_name
+                - last_name
+                - email
+                - password
+                - phone
+                - password_confirmation
+      security: []
+  /api/v1/login:
+    post:
+      summary: Login
+      operationId: login
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: false
+                  data:
+                    token: 1|aF5s7p3xxx1lVL8hkSrPN72m4wPVpTvTs...
+                  message: null
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: 1|aF5s7p3xxx1lVL8hkSrPN72m4wPVpTvTs...
+                  message:
+                    type: string
+                    example: null
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: 'e.g: abc@example.com'
+                password:
+                  type: string
+                  description: 'The password of user to create.'
+                  example: 'f&XX!`Ql'
+                login:
+                  type: string
+                  description: 'The email/phone of the user.'
+                  example: inventore
+              required:
+                - email
+                - password
+                - login
+      security: []
+  /api/v1/password/forgot:
+    post:
+      summary: 'Forgot password'
+      operationId: forgotPassword
+      description: 'Send a reset link to the given user.'
+      parameters: []
+      responses: {  }
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'The email of the user.'
+                  example: trantow.kaley@example.org
+              required:
+                - email
+      security: []
+  /api/v1/resend-verify-account-email:
+    post:
+      summary: 'Resend email verification'
+      operationId: resendEmailVerification
+      description: 'Resend the email verification notification.'
+      parameters: []
+      responses: {  }
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'The email of the user.'
+                  example: pagac.vincent@example.com
+              required:
+                - email
+      security: []
+  /api/v1/logout:
+    get:
+      summary: Logout
+      operationId: logout
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: true
+                  data: null
+                  message: Unauthenticated.
+                properties:
+                  error:
+                    type: boolean
+                    example: true
+                  data:
+                    type: string
+                    example: null
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Authentication
+  /api/v1/search:
+    get:
+      summary: 'Search post'
+      operationId: searchPost
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: false
+                  data:
+                    items:
+                      current_page: 1
+                      data:
+                        -
+                          id: 10
+                          name: 'Building a Strong Employer Brand for Talent Acquisition'
+                          description: 'Explore proven strategies and actionable insights to drive growth and thrive in the ever-evolving business landscape of 2023.'
+                          content: "<p>when an unknown printer took ar galley offer type year anddey scrambled  make type aewer specimen book bethas survived not only five when annery unknown printer.eed a little help from our friends from time to time. Although we offer the one-stop convenience.</p>\n<p>eed a little help from our friends from time to time. Although we offer the one-stop convenience of annery integrated range of legal, financial services under one roof, there are occasions when our clients areaneed specia- list advice beyond the scope of our own expertise.</p>\n<blockquote>\n    <p>“ urabitur varius eros rutrum consequat Mauris aewa sollicitudin enim condimentum luctus enim justo non molestie nisl ”</p>\n</blockquote>\n<h4 class=\"title-two\">Speed Optimized</h4>\n<p>when an unknown printer took a galley of type and scrambled it to make a type specimen bookhas a not only five centuries, but also the leap into electronic typesetting, remaining essentially unchan galley of type and scrambled it to make a type specimen book.</p>\n<div class=\"bd-inner-wrap\">\n    <div class=\"row align-items-center\">\n        <div class=\"col-46\">\n            <div class=\"thumb\">\n                <img src=\"http://gerow.test/storage/news/12.png\" alt=\"News\">\n                <a href=\"https://www.youtube.com/watch?v=v2qeqkKgw7U\" class=\"play-btn popup-video\"><i class=\"fas fa-play\"></i></a>\n            </div>\n        </div>\n        <div class=\"col-54\">\n            <div class=\"content\">\n                <h3 class=\"title-two\">Conduct replied off whether arrived adapted</h3>\n                <p>when an unknown printer took a galley type remaining essentially unchan galley of type and scrambled it to make a type specimen book.</p>\n                <ul class=\"list-wrap\">\n                    <li><i class=\"fas fa-check-circle\"></i>Commercial Property Insurance</li>\n                    <li><i class=\"fas fa-check-circle\"></i>Budget Friendly Theme</li>\n                    <li><i class=\"fas fa-check-circle\"></i>Happy Customers</li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</div>\n<p>when an unknown printer took a galley of type and scrambled it to make a type specimen bookhas a not only five centuries, but also the leap into electronic typesetting, remaining essentially unchan galley of type and scrambled it to make a type specimen book.</p>\n"
+                          status:
+                            value: published
+                            label: Published
+                          author_id: 1
+                          author_type: Botble\ACL\Models\User
+                          is_featured: 0
+                          image: news/10.png
+                          views: 971
+                          format_type: null
+                          created_at: '2024-08-27T11:13:33.000000Z'
+                          updated_at: '2024-08-27T11:13:33.000000Z'
+                          slugable:
+                            id: 65
+                            key: building-a-strong-employer-brand-for-talent-acquisition
+                            reference_type: Botble\Blog\Models\Post
+                            reference_id: 10
+                            prefix: blog
+                      first_page_url: 'http://gerow.test/api/v1/search?page=1'
+                      from: 1
+                      last_page: 1
+                      last_page_url: 'http://gerow.test/api/v1/search?page=1'
+                      links:
+                        -
+                          url: null
+                          label: '&laquo; Previous'
+                          active: false
+                        -
+                          url: 'http://gerow.test/api/v1/search?page=1'
+                          label: '1'
+                          active: true
+                        -
+                          url: null
+                          label: 'Next &raquo;'
+                          active: false
+                      next_page_url: null
+                      path: 'http://gerow.test/api/v1/search'
+                      per_page: 10
+                      prev_page_url: null
+                      to: 1
+                      total: 1
+                    query: qui
+                    count: 1
+                  message: null
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: object
+                        properties:
+                          current_page:
+                            type: integer
+                            example: 1
+                          data:
+                            type: array
+                            example:
+                              -
+                                id: 10
+                                name: 'Building a Strong Employer Brand for Talent Acquisition'
+                                description: 'Explore proven strategies and actionable insights to drive growth and thrive in the ever-evolving business landscape of 2023.'
+                                content: "<p>when an unknown printer took ar galley offer type year anddey scrambled  make type aewer specimen book bethas survived not only five when annery unknown printer.eed a little help from our friends from time to time. Although we offer the one-stop convenience.</p>\n<p>eed a little help from our friends from time to time. Although we offer the one-stop convenience of annery integrated range of legal, financial services under one roof, there are occasions when our clients areaneed specia- list advice beyond the scope of our own expertise.</p>\n<blockquote>\n    <p>“ urabitur varius eros rutrum consequat Mauris aewa sollicitudin enim condimentum luctus enim justo non molestie nisl ”</p>\n</blockquote>\n<h4 class=\"title-two\">Speed Optimized</h4>\n<p>when an unknown printer took a galley of type and scrambled it to make a type specimen bookhas a not only five centuries, but also the leap into electronic typesetting, remaining essentially unchan galley of type and scrambled it to make a type specimen book.</p>\n<div class=\"bd-inner-wrap\">\n    <div class=\"row align-items-center\">\n        <div class=\"col-46\">\n            <div class=\"thumb\">\n                <img src=\"http://gerow.test/storage/news/12.png\" alt=\"News\">\n                <a href=\"https://www.youtube.com/watch?v=v2qeqkKgw7U\" class=\"play-btn popup-video\"><i class=\"fas fa-play\"></i></a>\n            </div>\n        </div>\n        <div class=\"col-54\">\n            <div class=\"content\">\n                <h3 class=\"title-two\">Conduct replied off whether arrived adapted</h3>\n                <p>when an unknown printer took a galley type remaining essentially unchan galley of type and scrambled it to make a type specimen book.</p>\n                <ul class=\"list-wrap\">\n                    <li><i class=\"fas fa-check-circle\"></i>Commercial Property Insurance</li>\n                    <li><i class=\"fas fa-check-circle\"></i>Budget Friendly Theme</li>\n                    <li><i class=\"fas fa-check-circle\"></i>Happy Customers</li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</div>\n<p>when an unknown printer took a galley of type and scrambled it to make a type specimen bookhas a not only five centuries, but also the leap into electronic typesetting, remaining essentially unchan galley of type and scrambled it to make a type specimen book.</p>\n"
+                                status:
+                                  value: published
+                                  label: Published
+                                author_id: 1
+                                author_type: Botble\ACL\Models\User
+                                is_featured: 0
+                                image: news/10.png
+                                views: 971
+                                format_type: null
+                                created_at: '2024-08-27T11:13:33.000000Z'
+                                updated_at: '2024-08-27T11:13:33.000000Z'
+                                slugable:
+                                  id: 65
+                                  key: building-a-strong-employer-brand-for-talent-acquisition
+                                  reference_type: Botble\Blog\Models\Post
+                                  reference_id: 10
+                                  prefix: blog
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 10
+                                name:
+                                  type: string
+                                  example: 'Building a Strong Employer Brand for Talent Acquisition'
+                                description:
+                                  type: string
+                                  example: 'Explore proven strategies and actionable insights to drive growth and thrive in the ever-evolving business landscape of 2023.'
+                                content:
+                                  type: string
+                                  example: "<p>when an unknown printer took ar galley offer type year anddey scrambled  make type aewer specimen book bethas survived not only five when annery unknown printer.eed a little help from our friends from time to time. Although we offer the one-stop convenience.</p>\n<p>eed a little help from our friends from time to time. Although we offer the one-stop convenience of annery integrated range of legal, financial services under one roof, there are occasions when our clients areaneed specia- list advice beyond the scope of our own expertise.</p>\n<blockquote>\n    <p>“ urabitur varius eros rutrum consequat Mauris aewa sollicitudin enim condimentum luctus enim justo non molestie nisl ”</p>\n</blockquote>\n<h4 class=\"title-two\">Speed Optimized</h4>\n<p>when an unknown printer took a galley of type and scrambled it to make a type specimen bookhas a not only five centuries, but also the leap into electronic typesetting, remaining essentially unchan galley of type and scrambled it to make a type specimen book.</p>\n<div class=\"bd-inner-wrap\">\n    <div class=\"row align-items-center\">\n        <div class=\"col-46\">\n            <div class=\"thumb\">\n                <img src=\"http://gerow.test/storage/news/12.png\" alt=\"News\">\n                <a href=\"https://www.youtube.com/watch?v=v2qeqkKgw7U\" class=\"play-btn popup-video\"><i class=\"fas fa-play\"></i></a>\n            </div>\n        </div>\n        <div class=\"col-54\">\n            <div class=\"content\">\n                <h3 class=\"title-two\">Conduct replied off whether arrived adapted</h3>\n                <p>when an unknown printer took a galley type remaining essentially unchan galley of type and scrambled it to make a type specimen book.</p>\n                <ul class=\"list-wrap\">\n                    <li><i class=\"fas fa-check-circle\"></i>Commercial Property Insurance</li>\n                    <li><i class=\"fas fa-check-circle\"></i>Budget Friendly Theme</li>\n                    <li><i class=\"fas fa-check-circle\"></i>Happy Customers</li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</div>\n<p>when an unknown printer took a galley of type and scrambled it to make a type specimen bookhas a not only five centuries, but also the leap into electronic typesetting, remaining essentially unchan galley of type and scrambled it to make a type specimen book.</p>\n"
+                                status:
+                                  type: object
+                                  properties:
+                                    value:
+                                      type: string
+                                      example: published
+                                    label:
+                                      type: string
+                                      example: Published
+                                author_id:
+                                  type: integer
+                                  example: 1
+                                author_type:
+                                  type: string
+                                  example: Botble\ACL\Models\User
+                                is_featured:
+                                  type: integer
+                                  example: 0
+                                image:
+                                  type: string
+                                  example: news/10.png
+                                views:
+                                  type: integer
+                                  example: 971
+                                format_type:
+                                  type: string
+                                  example: null
+                                created_at:
+                                  type: string
+                                  example: '2024-08-27T11:13:33.000000Z'
+                                updated_at:
+                                  type: string
+                                  example: '2024-08-27T11:13:33.000000Z'
+                                slugable:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      example: 65
+                                    key:
+                                      type: string
+                                      example: building-a-strong-employer-brand-for-talent-acquisition
+                                    reference_type:
+                                      type: string
+                                      example: Botble\Blog\Models\Post
+                                    reference_id:
+                                      type: integer
+                                      example: 10
+                                    prefix:
+                                      type: string
+                                      example: blog
+                          first_page_url:
+                            type: string
+                            example: 'http://gerow.test/api/v1/search?page=1'
+                          from:
+                            type: integer
+                            example: 1
+                          last_page:
+                            type: integer
+                            example: 1
+                          last_page_url:
+                            type: string
+                            example: 'http://gerow.test/api/v1/search?page=1'
+                          links:
+                            type: array
+                            example:
+                              -
+                                url: null
+                                label: '&laquo; Previous'
+                                active: false
+                              -
+                                url: 'http://gerow.test/api/v1/search?page=1'
+                                label: '1'
+                                active: true
+                              -
+                                url: null
+                                label: 'Next &raquo;'
+                                active: false
+                            items:
+                              type: object
+                              properties:
+                                url:
+                                  type: string
+                                  example: null
+                                label:
+                                  type: string
+                                  example: '&laquo; Previous'
+                                active:
+                                  type: boolean
+                                  example: false
+                          next_page_url:
+                            type: string
+                            example: null
+                          path:
+                            type: string
+                            example: 'http://gerow.test/api/v1/search'
+                          per_page:
+                            type: integer
+                            example: 10
+                          prev_page_url:
+                            type: string
+                            example: null
+                          to:
+                            type: integer
+                            example: 1
+                          total:
+                            type: integer
+                            example: 1
+                      query:
+                        type: string
+                        example: qui
+                      count:
+                        type: integer
+                        example: 1
+                  message:
+                    type: string
+                    example: null
+      tags:
+        - Blog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                q:
+                  type: string
+                  description: 'The search keyword.'
+                  example: qui
+              required:
+                - q
+      security: []
+  /api/v1/posts:
+    get:
+      summary: 'List posts'
+      operationId: listPosts
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      name: '10 Strategies for Business Growth in 2023'
+                      slug: 10-strategies-for-business-growth-in-2023
+                      description: 'Get expert advice on how small businesses can navigate tax season efficiently, minimize liabilities, and stay compliant with tax regulations.'
+                      image: 'http://gerow.test/storage/news/1.png'
+                      categories:
+                        -
+                          id: 1
+                          name: 'Business Strategy'
+                          slug: business-strategy
+                          url: 'http://gerow.test/blog/business-strategy'
+                          description: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                        -
+                          id: 6
+                          name: Startups
+                          slug: startups
+                          url: 'http://gerow.test/blog/startups'
+                          description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                      tags:
+                        -
+                          id: 1
+                          name: Strategy
+                          slug: strategy
+                          description: null
+                        -
+                          id: 2
+                          name: Marketing
+                          slug: marketing
+                          description: null
+                        -
+                          id: 3
+                          name: Finance
+                          slug: finance
+                          description: null
+                      created_at: '2024-08-27T11:13:33.000000Z'
+                      updated_at: '2024-08-27T11:13:33.000000Z'
+                    -
+                      id: 2
+                      name: 'Navigating Tax Season: Tips for Small Businesses'
+                      slug: navigating-tax-season-tips-for-small-businesses
+                      description: 'Get expert advice on how small businesses can navigate tax season efficiently, minimize liabilities, and stay compliant with tax regulations.'
+                      image: 'http://gerow.test/storage/news/2.png'
+                      categories:
+                        -
+                          id: 3
+                          name: 'Financial Management'
+                          slug: financial-management
+                          url: 'http://gerow.test/blog/financial-management'
+                          description: 'Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.'
+                        -
+                          id: 6
+                          name: Startups
+                          slug: startups
+                          url: 'http://gerow.test/blog/startups'
+                          description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                      tags:
+                        -
+                          id: 1
+                          name: Strategy
+                          slug: strategy
+                          description: null
+                        -
+                          id: 2
+                          name: Marketing
+                          slug: marketing
+                          description: null
+                        -
+                          id: 3
+                          name: Finance
+                          slug: finance
+                          description: null
+                      created_at: '2024-08-27T11:13:33.000000Z'
+                      updated_at: '2024-08-27T11:13:33.000000Z'
+                    -
+                      id: 3
+                      name: 'The Power of Data Analytics in Business Decision-Making'
+                      slug: the-power-of-data-analytics-in-business-decision-making
+                      description: 'Learn how businesses can leverage technology to gain a competitive edge, streamline operations, and deliver exceptional value to customers.'
+                      image: 'http://gerow.test/storage/news/3.png'
+                      categories:
+                        -
+                          id: 1
+                          name: 'Business Strategy'
+                          slug: business-strategy
+                          url: 'http://gerow.test/blog/business-strategy'
+                          description: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                        -
+                          id: 6
+                          name: Startups
+                          slug: startups
+                          url: 'http://gerow.test/blog/startups'
+                          description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                      tags:
+                        -
+                          id: 1
+                          name: Strategy
+                          slug: strategy
+                          description: null
+                        -
+                          id: 2
+                          name: Marketing
+                          slug: marketing
+                          description: null
+                        -
+                          id: 3
+                          name: Finance
+                          slug: finance
+                          description: null
+                      created_at: '2024-08-27T11:13:33.000000Z'
+                      updated_at: '2024-08-27T11:13:33.000000Z'
+                    -
+                      id: 4
+                      name: 'How to Create a Winning Marketing Plan'
+                      slug: how-to-create-a-winning-marketing-plan
+                      description: 'Learn how businesses can leverage technology to gain a competitive edge, streamline operations, and deliver exceptional value to customers.'
+                      image: 'http://gerow.test/storage/news/4.png'
+                      categories:
+                        -
+                          id: 1
+                          name: 'Business Strategy'
+                          slug: business-strategy
+                          url: 'http://gerow.test/blog/business-strategy'
+                          description: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                        -
+                          id: 7
+                          name: 'Success Stories'
+                          slug: success-stories
+                          url: 'http://gerow.test/blog/success-stories'
+                          description: 'Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.'
+                      tags:
+                        -
+                          id: 1
+                          name: Strategy
+                          slug: strategy
+                          description: null
+                        -
+                          id: 2
+                          name: Marketing
+                          slug: marketing
+                          description: null
+                        -
+                          id: 3
+                          name: Finance
+                          slug: finance
+                          description: null
+                      created_at: '2024-08-27T11:13:33.000000Z'
+                      updated_at: '2024-08-27T11:13:33.000000Z'
+                    -
+                      id: 5
+                      name: 'Mastering the Art of Financial Planning for Entrepreneurs'
+                      slug: mastering-the-art-of-financial-planning-for-entrepreneurs
+                      description: 'Learn the essential steps and elements to craft a winning marketing plan that effectively reaches your target audience and drives results.'
+                      image: 'http://gerow.test/storage/news/5.png'
+                      categories:
+                        -
+                          id: 4
+                          name: Entrepreneurship
+                          slug: entrepreneurship
+                          url: 'http://gerow.test/blog/entrepreneurship'
+                          description: 'Non accusantium dolores qui est aut voluptas. Nisi non id quo omnis et. Ipsam perspiciatis aut a sunt sed illo. Eum vitae odio voluptate ut doloremque quam.'
+                        -
+                          id: 6
+                          name: Startups
+                          slug: startups
+                          url: 'http://gerow.test/blog/startups'
+                          description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                      tags:
+                        -
+                          id: 1
+                          name: Strategy
+                          slug: strategy
+                          description: null
+                        -
+                          id: 2
+                          name: Marketing
+                          slug: marketing
+                          description: null
+                        -
+                          id: 3
+                          name: Finance
+                          slug: finance
+                          description: null
+                      created_at: '2024-08-27T11:13:33.000000Z'
+                      updated_at: '2024-08-27T11:13:33.000000Z'
+                    -
+                      id: 6
+                      name: 'The Role of Innovation in Modern Business'
+                      slug: the-role-of-innovation-in-modern-business
+                      description: 'Get expert advice on how small businesses can navigate tax season efficiently, minimize liabilities, and stay compliant with tax regulations.'
+                      image: 'http://gerow.test/storage/news/6.png'
+                      categories:
+                        -
+                          id: 2
+                          name: 'Market Research'
+                          slug: market-research
+                          url: 'http://gerow.test/blog/market-research'
+                          description: 'Iste reprehenderit et quia nesciunt qui laudantium atque. Non maiores qui veritatis qui nulla ut. Consequatur eius qui quam labore velit. Distinctio sunt fugit aut rerum.'
+                        -
+                          id: 7
+                          name: 'Success Stories'
+                          slug: success-stories
+                          url: 'http://gerow.test/blog/success-stories'
+                          description: 'Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.'
+                      tags:
+                        -
+                          id: 1
+                          name: Strategy
+                          slug: strategy
+                          description: null
+                        -
+                          id: 2
+                          name: Marketing
+                          slug: marketing
+                          description: null
+                        -
+                          id: 3
+                          name: Finance
+                          slug: finance
+                          description: null
+                      created_at: '2024-08-27T11:13:33.000000Z'
+                      updated_at: '2024-08-27T11:13:33.000000Z'
+                    -
+                      id: 7
+                      name: 'Startup Success Stories: Lessons from Industry Leaders'
+                      slug: startup-success-stories-lessons-from-industry-leaders
+                      description: 'Gain insights into the art of financial planning tailored to entrepreneurs, helping you secure your financial future and business success.'
+                      image: 'http://gerow.test/storage/news/7.png'
+                      categories:
+                        -
+                          id: 1
+                          name: 'Business Strategy'
+                          slug: business-strategy
+                          url: 'http://gerow.test/blog/business-strategy'
+                          description: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                        -
+                          id: 6
+                          name: Startups
+                          slug: startups
+                          url: 'http://gerow.test/blog/startups'
+                          description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                      tags:
+                        -
+                          id: 1
+                          name: Strategy
+                          slug: strategy
+                          description: null
+                        -
+                          id: 2
+                          name: Marketing
+                          slug: marketing
+                          description: null
+                        -
+                          id: 3
+                          name: Finance
+                          slug: finance
+                          description: null
+                      created_at: '2024-08-27T11:13:33.000000Z'
+                      updated_at: '2024-08-27T11:13:33.000000Z'
+                    -
+                      id: 8
+                      name: 'Balancing Act: Work-Life Integration for Business Owners'
+                      slug: balancing-act-work-life-integration-for-business-owners
+                      description: 'Get expert advice on how small businesses can navigate tax season efficiently, minimize liabilities, and stay compliant with tax regulations.'
+                      image: 'http://gerow.test/storage/news/8.png'
+                      categories:
+                        -
+                          id: 3
+                          name: 'Financial Management'
+                          slug: financial-management
+                          url: 'http://gerow.test/blog/financial-management'
+                          description: 'Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.'
+                        -
+                          id: 7
+                          name: 'Success Stories'
+                          slug: success-stories
+                          url: 'http://gerow.test/blog/success-stories'
+                          description: 'Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.'
+                      tags:
+                        -
+                          id: 1
+                          name: Strategy
+                          slug: strategy
+                          description: null
+                        -
+                          id: 2
+                          name: Marketing
+                          slug: marketing
+                          description: null
+                        -
+                          id: 3
+                          name: Finance
+                          slug: finance
+                          description: null
+                      created_at: '2024-08-27T11:13:33.000000Z'
+                      updated_at: '2024-08-27T11:13:33.000000Z'
+                    -
+                      id: 9
+                      name: 'The Impact of Sustainable Practices on Business Sustainability'
+                      slug: the-impact-of-sustainable-practices-on-business-sustainability
+                      description: 'Gain insights into the art of financial planning tailored to entrepreneurs, helping you secure your financial future and business success.'
+                      image: 'http://gerow.test/storage/news/9.png'
+                      categories:
+                        -
+                          id: 1
+                          name: 'Business Strategy'
+                          slug: business-strategy
+                          url: 'http://gerow.test/blog/business-strategy'
+                          description: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                        -
+                          id: 5
+                          name: 'Career Development'
+                          slug: career-development
+                          url: 'http://gerow.test/blog/career-development'
+                          description: 'Ut provident aut provident temporibus laboriosam rem. Commodi tenetur nemo temporibus quia hic blanditiis sit.'
+                      tags:
+                        -
+                          id: 1
+                          name: Strategy
+                          slug: strategy
+                          description: null
+                        -
+                          id: 2
+                          name: Marketing
+                          slug: marketing
+                          description: null
+                        -
+                          id: 3
+                          name: Finance
+                          slug: finance
+                          description: null
+                      created_at: '2024-08-27T11:13:33.000000Z'
+                      updated_at: '2024-08-27T11:13:33.000000Z'
+                    -
+                      id: 10
+                      name: 'Building a Strong Employer Brand for Talent Acquisition'
+                      slug: building-a-strong-employer-brand-for-talent-acquisition
+                      description: 'Explore proven strategies and actionable insights to drive growth and thrive in the ever-evolving business landscape of 2023.'
+                      image: 'http://gerow.test/storage/news/10.png'
+                      categories:
+                        -
+                          id: 3
+                          name: 'Financial Management'
+                          slug: financial-management
+                          url: 'http://gerow.test/blog/financial-management'
+                          description: 'Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.'
+                        -
+                          id: 5
+                          name: 'Career Development'
+                          slug: career-development
+                          url: 'http://gerow.test/blog/career-development'
+                          description: 'Ut provident aut provident temporibus laboriosam rem. Commodi tenetur nemo temporibus quia hic blanditiis sit.'
+                      tags:
+                        -
+                          id: 1
+                          name: Strategy
+                          slug: strategy
+                          description: null
+                        -
+                          id: 2
+                          name: Marketing
+                          slug: marketing
+                          description: null
+                        -
+                          id: 3
+                          name: Finance
+                          slug: finance
+                          description: null
+                      created_at: '2024-08-27T11:13:33.000000Z'
+                      updated_at: '2024-08-27T11:13:33.000000Z'
+                  links:
+                    first: 'http://gerow.test/api/v1/posts?page=1'
+                    last: 'http://gerow.test/api/v1/posts?page=2'
+                    prev: null
+                    next: 'http://gerow.test/api/v1/posts?page=2'
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 2
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://gerow.test/api/v1/posts?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: 'http://gerow.test/api/v1/posts?page=2'
+                        label: '2'
+                        active: false
+                      -
+                        url: 'http://gerow.test/api/v1/posts?page=2'
+                        label: 'Next &raquo;'
+                        active: false
+                    path: 'http://gerow.test/api/v1/posts'
+                    per_page: 10
+                    to: 10
+                    total: 12
+                  error: false
+                  message: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: '10 Strategies for Business Growth in 2023'
+                        slug: 10-strategies-for-business-growth-in-2023
+                        description: 'Get expert advice on how small businesses can navigate tax season efficiently, minimize liabilities, and stay compliant with tax regulations.'
+                        image: 'http://gerow.test/storage/news/1.png'
+                        categories:
+                          -
+                            id: 1
+                            name: 'Business Strategy'
+                            slug: business-strategy
+                            url: 'http://gerow.test/blog/business-strategy'
+                            description: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                          -
+                            id: 6
+                            name: Startups
+                            slug: startups
+                            url: 'http://gerow.test/blog/startups'
+                            description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                        tags:
+                          -
+                            id: 1
+                            name: Strategy
+                            slug: strategy
+                            description: null
+                          -
+                            id: 2
+                            name: Marketing
+                            slug: marketing
+                            description: null
+                          -
+                            id: 3
+                            name: Finance
+                            slug: finance
+                            description: null
+                        created_at: '2024-08-27T11:13:33.000000Z'
+                        updated_at: '2024-08-27T11:13:33.000000Z'
+                      -
+                        id: 2
+                        name: 'Navigating Tax Season: Tips for Small Businesses'
+                        slug: navigating-tax-season-tips-for-small-businesses
+                        description: 'Get expert advice on how small businesses can navigate tax season efficiently, minimize liabilities, and stay compliant with tax regulations.'
+                        image: 'http://gerow.test/storage/news/2.png'
+                        categories:
+                          -
+                            id: 3
+                            name: 'Financial Management'
+                            slug: financial-management
+                            url: 'http://gerow.test/blog/financial-management'
+                            description: 'Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.'
+                          -
+                            id: 6
+                            name: Startups
+                            slug: startups
+                            url: 'http://gerow.test/blog/startups'
+                            description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                        tags:
+                          -
+                            id: 1
+                            name: Strategy
+                            slug: strategy
+                            description: null
+                          -
+                            id: 2
+                            name: Marketing
+                            slug: marketing
+                            description: null
+                          -
+                            id: 3
+                            name: Finance
+                            slug: finance
+                            description: null
+                        created_at: '2024-08-27T11:13:33.000000Z'
+                        updated_at: '2024-08-27T11:13:33.000000Z'
+                      -
+                        id: 3
+                        name: 'The Power of Data Analytics in Business Decision-Making'
+                        slug: the-power-of-data-analytics-in-business-decision-making
+                        description: 'Learn how businesses can leverage technology to gain a competitive edge, streamline operations, and deliver exceptional value to customers.'
+                        image: 'http://gerow.test/storage/news/3.png'
+                        categories:
+                          -
+                            id: 1
+                            name: 'Business Strategy'
+                            slug: business-strategy
+                            url: 'http://gerow.test/blog/business-strategy'
+                            description: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                          -
+                            id: 6
+                            name: Startups
+                            slug: startups
+                            url: 'http://gerow.test/blog/startups'
+                            description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                        tags:
+                          -
+                            id: 1
+                            name: Strategy
+                            slug: strategy
+                            description: null
+                          -
+                            id: 2
+                            name: Marketing
+                            slug: marketing
+                            description: null
+                          -
+                            id: 3
+                            name: Finance
+                            slug: finance
+                            description: null
+                        created_at: '2024-08-27T11:13:33.000000Z'
+                        updated_at: '2024-08-27T11:13:33.000000Z'
+                      -
+                        id: 4
+                        name: 'How to Create a Winning Marketing Plan'
+                        slug: how-to-create-a-winning-marketing-plan
+                        description: 'Learn how businesses can leverage technology to gain a competitive edge, streamline operations, and deliver exceptional value to customers.'
+                        image: 'http://gerow.test/storage/news/4.png'
+                        categories:
+                          -
+                            id: 1
+                            name: 'Business Strategy'
+                            slug: business-strategy
+                            url: 'http://gerow.test/blog/business-strategy'
+                            description: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                          -
+                            id: 7
+                            name: 'Success Stories'
+                            slug: success-stories
+                            url: 'http://gerow.test/blog/success-stories'
+                            description: 'Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.'
+                        tags:
+                          -
+                            id: 1
+                            name: Strategy
+                            slug: strategy
+                            description: null
+                          -
+                            id: 2
+                            name: Marketing
+                            slug: marketing
+                            description: null
+                          -
+                            id: 3
+                            name: Finance
+                            slug: finance
+                            description: null
+                        created_at: '2024-08-27T11:13:33.000000Z'
+                        updated_at: '2024-08-27T11:13:33.000000Z'
+                      -
+                        id: 5
+                        name: 'Mastering the Art of Financial Planning for Entrepreneurs'
+                        slug: mastering-the-art-of-financial-planning-for-entrepreneurs
+                        description: 'Learn the essential steps and elements to craft a winning marketing plan that effectively reaches your target audience and drives results.'
+                        image: 'http://gerow.test/storage/news/5.png'
+                        categories:
+                          -
+                            id: 4
+                            name: Entrepreneurship
+                            slug: entrepreneurship
+                            url: 'http://gerow.test/blog/entrepreneurship'
+                            description: 'Non accusantium dolores qui est aut voluptas. Nisi non id quo omnis et. Ipsam perspiciatis aut a sunt sed illo. Eum vitae odio voluptate ut doloremque quam.'
+                          -
+                            id: 6
+                            name: Startups
+                            slug: startups
+                            url: 'http://gerow.test/blog/startups'
+                            description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                        tags:
+                          -
+                            id: 1
+                            name: Strategy
+                            slug: strategy
+                            description: null
+                          -
+                            id: 2
+                            name: Marketing
+                            slug: marketing
+                            description: null
+                          -
+                            id: 3
+                            name: Finance
+                            slug: finance
+                            description: null
+                        created_at: '2024-08-27T11:13:33.000000Z'
+                        updated_at: '2024-08-27T11:13:33.000000Z'
+                      -
+                        id: 6
+                        name: 'The Role of Innovation in Modern Business'
+                        slug: the-role-of-innovation-in-modern-business
+                        description: 'Get expert advice on how small businesses can navigate tax season efficiently, minimize liabilities, and stay compliant with tax regulations.'
+                        image: 'http://gerow.test/storage/news/6.png'
+                        categories:
+                          -
+                            id: 2
+                            name: 'Market Research'
+                            slug: market-research
+                            url: 'http://gerow.test/blog/market-research'
+                            description: 'Iste reprehenderit et quia nesciunt qui laudantium atque. Non maiores qui veritatis qui nulla ut. Consequatur eius qui quam labore velit. Distinctio sunt fugit aut rerum.'
+                          -
+                            id: 7
+                            name: 'Success Stories'
+                            slug: success-stories
+                            url: 'http://gerow.test/blog/success-stories'
+                            description: 'Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.'
+                        tags:
+                          -
+                            id: 1
+                            name: Strategy
+                            slug: strategy
+                            description: null
+                          -
+                            id: 2
+                            name: Marketing
+                            slug: marketing
+                            description: null
+                          -
+                            id: 3
+                            name: Finance
+                            slug: finance
+                            description: null
+                        created_at: '2024-08-27T11:13:33.000000Z'
+                        updated_at: '2024-08-27T11:13:33.000000Z'
+                      -
+                        id: 7
+                        name: 'Startup Success Stories: Lessons from Industry Leaders'
+                        slug: startup-success-stories-lessons-from-industry-leaders
+                        description: 'Gain insights into the art of financial planning tailored to entrepreneurs, helping you secure your financial future and business success.'
+                        image: 'http://gerow.test/storage/news/7.png'
+                        categories:
+                          -
+                            id: 1
+                            name: 'Business Strategy'
+                            slug: business-strategy
+                            url: 'http://gerow.test/blog/business-strategy'
+                            description: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                          -
+                            id: 6
+                            name: Startups
+                            slug: startups
+                            url: 'http://gerow.test/blog/startups'
+                            description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                        tags:
+                          -
+                            id: 1
+                            name: Strategy
+                            slug: strategy
+                            description: null
+                          -
+                            id: 2
+                            name: Marketing
+                            slug: marketing
+                            description: null
+                          -
+                            id: 3
+                            name: Finance
+                            slug: finance
+                            description: null
+                        created_at: '2024-08-27T11:13:33.000000Z'
+                        updated_at: '2024-08-27T11:13:33.000000Z'
+                      -
+                        id: 8
+                        name: 'Balancing Act: Work-Life Integration for Business Owners'
+                        slug: balancing-act-work-life-integration-for-business-owners
+                        description: 'Get expert advice on how small businesses can navigate tax season efficiently, minimize liabilities, and stay compliant with tax regulations.'
+                        image: 'http://gerow.test/storage/news/8.png'
+                        categories:
+                          -
+                            id: 3
+                            name: 'Financial Management'
+                            slug: financial-management
+                            url: 'http://gerow.test/blog/financial-management'
+                            description: 'Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.'
+                          -
+                            id: 7
+                            name: 'Success Stories'
+                            slug: success-stories
+                            url: 'http://gerow.test/blog/success-stories'
+                            description: 'Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.'
+                        tags:
+                          -
+                            id: 1
+                            name: Strategy
+                            slug: strategy
+                            description: null
+                          -
+                            id: 2
+                            name: Marketing
+                            slug: marketing
+                            description: null
+                          -
+                            id: 3
+                            name: Finance
+                            slug: finance
+                            description: null
+                        created_at: '2024-08-27T11:13:33.000000Z'
+                        updated_at: '2024-08-27T11:13:33.000000Z'
+                      -
+                        id: 9
+                        name: 'The Impact of Sustainable Practices on Business Sustainability'
+                        slug: the-impact-of-sustainable-practices-on-business-sustainability
+                        description: 'Gain insights into the art of financial planning tailored to entrepreneurs, helping you secure your financial future and business success.'
+                        image: 'http://gerow.test/storage/news/9.png'
+                        categories:
+                          -
+                            id: 1
+                            name: 'Business Strategy'
+                            slug: business-strategy
+                            url: 'http://gerow.test/blog/business-strategy'
+                            description: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                          -
+                            id: 5
+                            name: 'Career Development'
+                            slug: career-development
+                            url: 'http://gerow.test/blog/career-development'
+                            description: 'Ut provident aut provident temporibus laboriosam rem. Commodi tenetur nemo temporibus quia hic blanditiis sit.'
+                        tags:
+                          -
+                            id: 1
+                            name: Strategy
+                            slug: strategy
+                            description: null
+                          -
+                            id: 2
+                            name: Marketing
+                            slug: marketing
+                            description: null
+                          -
+                            id: 3
+                            name: Finance
+                            slug: finance
+                            description: null
+                        created_at: '2024-08-27T11:13:33.000000Z'
+                        updated_at: '2024-08-27T11:13:33.000000Z'
+                      -
+                        id: 10
+                        name: 'Building a Strong Employer Brand for Talent Acquisition'
+                        slug: building-a-strong-employer-brand-for-talent-acquisition
+                        description: 'Explore proven strategies and actionable insights to drive growth and thrive in the ever-evolving business landscape of 2023.'
+                        image: 'http://gerow.test/storage/news/10.png'
+                        categories:
+                          -
+                            id: 3
+                            name: 'Financial Management'
+                            slug: financial-management
+                            url: 'http://gerow.test/blog/financial-management'
+                            description: 'Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.'
+                          -
+                            id: 5
+                            name: 'Career Development'
+                            slug: career-development
+                            url: 'http://gerow.test/blog/career-development'
+                            description: 'Ut provident aut provident temporibus laboriosam rem. Commodi tenetur nemo temporibus quia hic blanditiis sit.'
+                        tags:
+                          -
+                            id: 1
+                            name: Strategy
+                            slug: strategy
+                            description: null
+                          -
+                            id: 2
+                            name: Marketing
+                            slug: marketing
+                            description: null
+                          -
+                            id: 3
+                            name: Finance
+                            slug: finance
+                            description: null
+                        created_at: '2024-08-27T11:13:33.000000Z'
+                        updated_at: '2024-08-27T11:13:33.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: '10 Strategies for Business Growth in 2023'
+                        slug:
+                          type: string
+                          example: 10-strategies-for-business-growth-in-2023
+                        description:
+                          type: string
+                          example: 'Get expert advice on how small businesses can navigate tax season efficiently, minimize liabilities, and stay compliant with tax regulations.'
+                        image:
+                          type: string
+                          example: 'http://gerow.test/storage/news/1.png'
+                        categories:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              name: 'Business Strategy'
+                              slug: business-strategy
+                              url: 'http://gerow.test/blog/business-strategy'
+                              description: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                            -
+                              id: 6
+                              name: Startups
+                              slug: startups
+                              url: 'http://gerow.test/blog/startups'
+                              description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: 'Business Strategy'
+                              slug:
+                                type: string
+                                example: business-strategy
+                              url:
+                                type: string
+                                example: 'http://gerow.test/blog/business-strategy'
+                              description:
+                                type: string
+                                example: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                        tags:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              name: Strategy
+                              slug: strategy
+                              description: null
+                            -
+                              id: 2
+                              name: Marketing
+                              slug: marketing
+                              description: null
+                            -
+                              id: 3
+                              name: Finance
+                              slug: finance
+                              description: null
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: Strategy
+                              slug:
+                                type: string
+                                example: strategy
+                              description:
+                                type: string
+                                example: null
+                        created_at:
+                          type: string
+                          example: '2024-08-27T11:13:33.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2024-08-27T11:13:33.000000Z'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://gerow.test/api/v1/posts?page=1'
+                      last:
+                        type: string
+                        example: 'http://gerow.test/api/v1/posts?page=2'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: 'http://gerow.test/api/v1/posts?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 2
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://gerow.test/api/v1/posts?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: 'http://gerow.test/api/v1/posts?page=2'
+                            label: '2'
+                            active: false
+                          -
+                            url: 'http://gerow.test/api/v1/posts?page=2'
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://gerow.test/api/v1/posts'
+                      per_page:
+                        type: integer
+                        example: 10
+                      to:
+                        type: integer
+                        example: 10
+                      total:
+                        type: integer
+                        example: 12
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: null
+      tags:
+        - Blog
+      security: []
+  /api/v1/categories:
+    get:
+      summary: 'List categories'
+      operationId: listCategories
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      name: 'Business Strategy'
+                      slug: business-strategy
+                      description: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                      children: []
+                      parent:
+                        id: null
+                        name: null
+                        slug: ''
+                        url: 'http://gerow.test'
+                        description: null
+                    -
+                      id: 2
+                      name: 'Market Research'
+                      slug: market-research
+                      description: 'Iste reprehenderit et quia nesciunt qui laudantium atque. Non maiores qui veritatis qui nulla ut. Consequatur eius qui quam labore velit. Distinctio sunt fugit aut rerum.'
+                      children:
+                        -
+                          id: 3
+                          name: 'Financial Management'
+                          slug: financial-management
+                          url: 'http://gerow.test/blog/financial-management'
+                          description: 'Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.'
+                      parent:
+                        id: null
+                        name: null
+                        slug: ''
+                        url: 'http://gerow.test'
+                        description: null
+                    -
+                      id: 3
+                      name: 'Financial Management'
+                      slug: financial-management
+                      description: 'Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.'
+                      children: []
+                      parent:
+                        id: 2
+                        name: 'Market Research'
+                        slug: market-research
+                        url: 'http://gerow.test/blog/market-research'
+                        description: 'Iste reprehenderit et quia nesciunt qui laudantium atque. Non maiores qui veritatis qui nulla ut. Consequatur eius qui quam labore velit. Distinctio sunt fugit aut rerum.'
+                    -
+                      id: 4
+                      name: Entrepreneurship
+                      slug: entrepreneurship
+                      description: 'Non accusantium dolores qui est aut voluptas. Nisi non id quo omnis et. Ipsam perspiciatis aut a sunt sed illo. Eum vitae odio voluptate ut doloremque quam.'
+                      children:
+                        -
+                          id: 5
+                          name: 'Career Development'
+                          slug: career-development
+                          url: 'http://gerow.test/blog/career-development'
+                          description: 'Ut provident aut provident temporibus laboriosam rem. Commodi tenetur nemo temporibus quia hic blanditiis sit.'
+                      parent:
+                        id: null
+                        name: null
+                        slug: ''
+                        url: 'http://gerow.test'
+                        description: null
+                    -
+                      id: 5
+                      name: 'Career Development'
+                      slug: career-development
+                      description: 'Ut provident aut provident temporibus laboriosam rem. Commodi tenetur nemo temporibus quia hic blanditiis sit.'
+                      children: []
+                      parent:
+                        id: 4
+                        name: Entrepreneurship
+                        slug: entrepreneurship
+                        url: 'http://gerow.test/blog/entrepreneurship'
+                        description: 'Non accusantium dolores qui est aut voluptas. Nisi non id quo omnis et. Ipsam perspiciatis aut a sunt sed illo. Eum vitae odio voluptate ut doloremque quam.'
+                    -
+                      id: 6
+                      name: Startups
+                      slug: startups
+                      description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                      children:
+                        -
+                          id: 7
+                          name: 'Success Stories'
+                          slug: success-stories
+                          url: 'http://gerow.test/blog/success-stories'
+                          description: 'Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.'
+                        -
+                          id: 8
+                          name: 'Industry Insights'
+                          slug: industry-insights
+                          url: 'http://gerow.test/blog/industry-insights'
+                          description: 'Id vero commodi deserunt officia. Excepturi mollitia qui rerum quaerat.'
+                        -
+                          id: 9
+                          name: 'Human Resources'
+                          slug: human-resources
+                          url: 'http://gerow.test/blog/human-resources'
+                          description: 'Veritatis voluptatem assumenda quia accusantium est. Nisi tempora omnis reprehenderit est tempore molestiae.'
+                      parent:
+                        id: null
+                        name: null
+                        slug: ''
+                        url: 'http://gerow.test'
+                        description: null
+                    -
+                      id: 7
+                      name: 'Success Stories'
+                      slug: success-stories
+                      description: 'Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.'
+                      children: []
+                      parent:
+                        id: 6
+                        name: Startups
+                        slug: startups
+                        url: 'http://gerow.test/blog/startups'
+                        description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                    -
+                      id: 8
+                      name: 'Industry Insights'
+                      slug: industry-insights
+                      description: 'Id vero commodi deserunt officia. Excepturi mollitia qui rerum quaerat.'
+                      children: []
+                      parent:
+                        id: 6
+                        name: Startups
+                        slug: startups
+                        url: 'http://gerow.test/blog/startups'
+                        description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                    -
+                      id: 9
+                      name: 'Human Resources'
+                      slug: human-resources
+                      description: 'Veritatis voluptatem assumenda quia accusantium est. Nisi tempora omnis reprehenderit est tempore molestiae.'
+                      children: []
+                      parent:
+                        id: 6
+                        name: Startups
+                        slug: startups
+                        url: 'http://gerow.test/blog/startups'
+                        description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                  links:
+                    first: 'http://gerow.test/api/v1/categories?page=1'
+                    last: 'http://gerow.test/api/v1/categories?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 1
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://gerow.test/api/v1/categories?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    path: 'http://gerow.test/api/v1/categories'
+                    per_page: 10
+                    to: 9
+                    total: 9
+                  error: false
+                  message: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: 'Business Strategy'
+                        slug: business-strategy
+                        description: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                        children: []
+                        parent:
+                          id: null
+                          name: null
+                          slug: ''
+                          url: 'http://gerow.test'
+                          description: null
+                      -
+                        id: 2
+                        name: 'Market Research'
+                        slug: market-research
+                        description: 'Iste reprehenderit et quia nesciunt qui laudantium atque. Non maiores qui veritatis qui nulla ut. Consequatur eius qui quam labore velit. Distinctio sunt fugit aut rerum.'
+                        children:
+                          -
+                            id: 3
+                            name: 'Financial Management'
+                            slug: financial-management
+                            url: 'http://gerow.test/blog/financial-management'
+                            description: 'Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.'
+                        parent:
+                          id: null
+                          name: null
+                          slug: ''
+                          url: 'http://gerow.test'
+                          description: null
+                      -
+                        id: 3
+                        name: 'Financial Management'
+                        slug: financial-management
+                        description: 'Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.'
+                        children: []
+                        parent:
+                          id: 2
+                          name: 'Market Research'
+                          slug: market-research
+                          url: 'http://gerow.test/blog/market-research'
+                          description: 'Iste reprehenderit et quia nesciunt qui laudantium atque. Non maiores qui veritatis qui nulla ut. Consequatur eius qui quam labore velit. Distinctio sunt fugit aut rerum.'
+                      -
+                        id: 4
+                        name: Entrepreneurship
+                        slug: entrepreneurship
+                        description: 'Non accusantium dolores qui est aut voluptas. Nisi non id quo omnis et. Ipsam perspiciatis aut a sunt sed illo. Eum vitae odio voluptate ut doloremque quam.'
+                        children:
+                          -
+                            id: 5
+                            name: 'Career Development'
+                            slug: career-development
+                            url: 'http://gerow.test/blog/career-development'
+                            description: 'Ut provident aut provident temporibus laboriosam rem. Commodi tenetur nemo temporibus quia hic blanditiis sit.'
+                        parent:
+                          id: null
+                          name: null
+                          slug: ''
+                          url: 'http://gerow.test'
+                          description: null
+                      -
+                        id: 5
+                        name: 'Career Development'
+                        slug: career-development
+                        description: 'Ut provident aut provident temporibus laboriosam rem. Commodi tenetur nemo temporibus quia hic blanditiis sit.'
+                        children: []
+                        parent:
+                          id: 4
+                          name: Entrepreneurship
+                          slug: entrepreneurship
+                          url: 'http://gerow.test/blog/entrepreneurship'
+                          description: 'Non accusantium dolores qui est aut voluptas. Nisi non id quo omnis et. Ipsam perspiciatis aut a sunt sed illo. Eum vitae odio voluptate ut doloremque quam.'
+                      -
+                        id: 6
+                        name: Startups
+                        slug: startups
+                        description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                        children:
+                          -
+                            id: 7
+                            name: 'Success Stories'
+                            slug: success-stories
+                            url: 'http://gerow.test/blog/success-stories'
+                            description: 'Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.'
+                          -
+                            id: 8
+                            name: 'Industry Insights'
+                            slug: industry-insights
+                            url: 'http://gerow.test/blog/industry-insights'
+                            description: 'Id vero commodi deserunt officia. Excepturi mollitia qui rerum quaerat.'
+                          -
+                            id: 9
+                            name: 'Human Resources'
+                            slug: human-resources
+                            url: 'http://gerow.test/blog/human-resources'
+                            description: 'Veritatis voluptatem assumenda quia accusantium est. Nisi tempora omnis reprehenderit est tempore molestiae.'
+                        parent:
+                          id: null
+                          name: null
+                          slug: ''
+                          url: 'http://gerow.test'
+                          description: null
+                      -
+                        id: 7
+                        name: 'Success Stories'
+                        slug: success-stories
+                        description: 'Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.'
+                        children: []
+                        parent:
+                          id: 6
+                          name: Startups
+                          slug: startups
+                          url: 'http://gerow.test/blog/startups'
+                          description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                      -
+                        id: 8
+                        name: 'Industry Insights'
+                        slug: industry-insights
+                        description: 'Id vero commodi deserunt officia. Excepturi mollitia qui rerum quaerat.'
+                        children: []
+                        parent:
+                          id: 6
+                          name: Startups
+                          slug: startups
+                          url: 'http://gerow.test/blog/startups'
+                          description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                      -
+                        id: 9
+                        name: 'Human Resources'
+                        slug: human-resources
+                        description: 'Veritatis voluptatem assumenda quia accusantium est. Nisi tempora omnis reprehenderit est tempore molestiae.'
+                        children: []
+                        parent:
+                          id: 6
+                          name: Startups
+                          slug: startups
+                          url: 'http://gerow.test/blog/startups'
+                          description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: 'Business Strategy'
+                        slug:
+                          type: string
+                          example: business-strategy
+                        description:
+                          type: string
+                          example: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                        children:
+                          type: array
+                          example: []
+                        parent:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: null
+                            name:
+                              type: string
+                              example: null
+                            slug:
+                              type: string
+                              example: ''
+                            url:
+                              type: string
+                              example: 'http://gerow.test'
+                            description:
+                              type: string
+                              example: null
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://gerow.test/api/v1/categories?page=1'
+                      last:
+                        type: string
+                        example: 'http://gerow.test/api/v1/categories?page=1'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://gerow.test/api/v1/categories?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://gerow.test/api/v1/categories'
+                      per_page:
+                        type: integer
+                        example: 10
+                      to:
+                        type: integer
+                        example: 9
+                      total:
+                        type: integer
+                        example: 9
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: null
+      tags:
+        - Blog
+      security: []
+  /api/v1/tags:
+    get:
+      summary: 'List tags'
+      operationId: listTags
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      name: Strategy
+                      slug: strategy
+                      description: null
+                    -
+                      id: 2
+                      name: Marketing
+                      slug: marketing
+                      description: null
+                    -
+                      id: 3
+                      name: Finance
+                      slug: finance
+                      description: null
+                    -
+                      id: 4
+                      name: Management
+                      slug: management
+                      description: null
+                    -
+                      id: 5
+                      name: Networking
+                      slug: networking
+                      description: null
+                    -
+                      id: 6
+                      name: Leadership
+                      slug: leadership
+                      description: null
+                    -
+                      id: 7
+                      name: Technology
+                      slug: technology
+                      description: null
+                    -
+                      id: 8
+                      name: Investment
+                      slug: investment
+                      description: null
+                    -
+                      id: 9
+                      name: Branding
+                      slug: branding
+                      description: null
+                    -
+                      id: 10
+                      name: Sales
+                      slug: sales
+                      description: null
+                  links:
+                    first: 'http://gerow.test/api/v1/tags?page=1'
+                    last: 'http://gerow.test/api/v1/tags?page=2'
+                    prev: null
+                    next: 'http://gerow.test/api/v1/tags?page=2'
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 2
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://gerow.test/api/v1/tags?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: 'http://gerow.test/api/v1/tags?page=2'
+                        label: '2'
+                        active: false
+                      -
+                        url: 'http://gerow.test/api/v1/tags?page=2'
+                        label: 'Next &raquo;'
+                        active: false
+                    path: 'http://gerow.test/api/v1/tags'
+                    per_page: 10
+                    to: 10
+                    total: 11
+                  error: false
+                  message: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: Strategy
+                        slug: strategy
+                        description: null
+                      -
+                        id: 2
+                        name: Marketing
+                        slug: marketing
+                        description: null
+                      -
+                        id: 3
+                        name: Finance
+                        slug: finance
+                        description: null
+                      -
+                        id: 4
+                        name: Management
+                        slug: management
+                        description: null
+                      -
+                        id: 5
+                        name: Networking
+                        slug: networking
+                        description: null
+                      -
+                        id: 6
+                        name: Leadership
+                        slug: leadership
+                        description: null
+                      -
+                        id: 7
+                        name: Technology
+                        slug: technology
+                        description: null
+                      -
+                        id: 8
+                        name: Investment
+                        slug: investment
+                        description: null
+                      -
+                        id: 9
+                        name: Branding
+                        slug: branding
+                        description: null
+                      -
+                        id: 10
+                        name: Sales
+                        slug: sales
+                        description: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Strategy
+                        slug:
+                          type: string
+                          example: strategy
+                        description:
+                          type: string
+                          example: null
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://gerow.test/api/v1/tags?page=1'
+                      last:
+                        type: string
+                        example: 'http://gerow.test/api/v1/tags?page=2'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: 'http://gerow.test/api/v1/tags?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 2
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://gerow.test/api/v1/tags?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: 'http://gerow.test/api/v1/tags?page=2'
+                            label: '2'
+                            active: false
+                          -
+                            url: 'http://gerow.test/api/v1/tags?page=2'
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://gerow.test/api/v1/tags'
+                      per_page:
+                        type: integer
+                        example: 10
+                      to:
+                        type: integer
+                        example: 10
+                      total:
+                        type: integer
+                        example: 11
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: null
+      tags:
+        - Blog
+      security: []
+  /api/v1/posts/filters:
+    get:
+      summary: 'Filters posts'
+      operationId: filtersPosts
+      description: ''
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'Current page of the collection. Default: 1'
+          example: 14
+          required: false
+          schema:
+            type: integer
+            description: 'Current page of the collection. Default: 1'
+            example: 14
+        -
+          in: query
+          name: per_page
+          description: 'Maximum number of items to be returned in result set.Default: 10'
+          example: 16
+          required: false
+          schema:
+            type: integer
+            description: 'Maximum number of items to be returned in result set.Default: 10'
+            example: 16
+        -
+          in: query
+          name: search
+          description: 'Limit results to those matching a string.'
+          example: dolor
+          required: false
+          schema:
+            type: string
+            description: 'Limit results to those matching a string.'
+            example: dolor
+        -
+          in: query
+          name: after
+          description: 'Limit response to posts published after a given ISO8601 compliant date.'
+          example: nisi
+          required: false
+          schema:
+            type: string
+            description: 'Limit response to posts published after a given ISO8601 compliant date.'
+            example: nisi
+        -
+          in: query
+          name: author
+          description: 'Limit result set to posts assigned to specific authors.'
+          example: quis
+          required: false
+          schema:
+            type: string
+            description: 'Limit result set to posts assigned to specific authors.'
+            example: quis
+        -
+          in: query
+          name: author_exclude
+          description: 'Ensure result set excludes posts assigned to specific authors.'
+          example: accusamus
+          required: false
+          schema:
+            type: string
+            description: 'Ensure result set excludes posts assigned to specific authors.'
+            example: accusamus
+        -
+          in: query
+          name: before
+          description: 'Limit response to posts published before a given ISO8601 compliant date.'
+          example: iure
+          required: false
+          schema:
+            type: string
+            description: 'Limit response to posts published before a given ISO8601 compliant date.'
+            example: iure
+        -
+          in: query
+          name: exclude
+          description: 'Ensure result set excludes specific IDs.'
+          example: voluptatem
+          required: false
+          schema:
+            type: string
+            description: 'Ensure result set excludes specific IDs.'
+            example: voluptatem
+        -
+          in: query
+          name: include
+          description: 'Limit result set to specific IDs.'
+          example: dicta
+          required: false
+          schema:
+            type: string
+            description: 'Limit result set to specific IDs.'
+            example: dicta
+        -
+          in: query
+          name: order
+          description: 'Order sort attribute ascending or descending. Default: desc .One of: asc, desc'
+          example: necessitatibus
+          required: false
+          schema:
+            type: string
+            description: 'Order sort attribute ascending or descending. Default: desc .One of: asc, desc'
+            example: necessitatibus
+        -
+          in: query
+          name: order_by
+          description: 'Sort collection by object attribute. Default: updated_at. One of: author, created_at, updated_at, id,  slug, title'
+          example: ducimus
+          required: false
+          schema:
+            type: string
+            description: 'Sort collection by object attribute. Default: updated_at. One of: author, created_at, updated_at, id,  slug, title'
+            example: ducimus
+        -
+          in: query
+          name: categories
+          description: 'Limit result set to all items that have the specified term assigned in the categories taxonomy.'
+          example: enim
+          required: false
+          schema:
+            type: string
+            description: 'Limit result set to all items that have the specified term assigned in the categories taxonomy.'
+            example: enim
+        -
+          in: query
+          name: categories_exclude
+          description: 'Limit result set to all items except those that have the specified term assigned in the categories taxonomy.'
+          example: consequatur
+          required: false
+          schema:
+            type: string
+            description: 'Limit result set to all items except those that have the specified term assigned in the categories taxonomy.'
+            example: consequatur
+        -
+          in: query
+          name: tags
+          description: 'Limit result set to all items that have the specified term assigned in the tags taxonomy.'
+          example: qui
+          required: false
+          schema:
+            type: string
+            description: 'Limit result set to all items that have the specified term assigned in the tags taxonomy.'
+            example: qui
+        -
+          in: query
+          name: tags_exclude
+          description: 'Limit result set to all items except those that have the specified term assigned in the tags taxonomy.'
+          example: non
+          required: false
+          schema:
+            type: string
+            description: 'Limit result set to all items except those that have the specified term assigned in the tags taxonomy.'
+            example: non
+        -
+          in: query
+          name: featured
+          description: 'Limit result set to items that are sticky.'
+          example: possimus
+          required: false
+          schema:
+            type: string
+            description: 'Limit result set to items that are sticky.'
+            example: possimus
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  links:
+                    first: 'http://gerow.test/api/v1/posts/filters?page=1'
+                    last: 'http://gerow.test/api/v1/posts/filters?page=1'
+                    prev: 'http://gerow.test/api/v1/posts/filters?page=13'
+                    next: null
+                  meta:
+                    current_page: 14
+                    from: null
+                    last_page: 1
+                    links:
+                      -
+                        url: 'http://gerow.test/api/v1/posts/filters?page=13'
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://gerow.test/api/v1/posts/filters?page=1'
+                        label: '1'
+                        active: false
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    path: 'http://gerow.test/api/v1/posts/filters'
+                    per_page: 16
+                    to: null
+                    total: 0
+                  error: false
+                  message: null
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://gerow.test/api/v1/posts/filters?page=1'
+                      last:
+                        type: string
+                        example: 'http://gerow.test/api/v1/posts/filters?page=1'
+                      prev:
+                        type: string
+                        example: 'http://gerow.test/api/v1/posts/filters?page=13'
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 14
+                      from:
+                        type: string
+                        example: null
+                      last_page:
+                        type: integer
+                        example: 1
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: 'http://gerow.test/api/v1/posts/filters?page=13'
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://gerow.test/api/v1/posts/filters?page=1'
+                            label: '1'
+                            active: false
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: 'http://gerow.test/api/v1/posts/filters?page=13'
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://gerow.test/api/v1/posts/filters'
+                      per_page:
+                        type: integer
+                        example: 16
+                      to:
+                        type: string
+                        example: null
+                      total:
+                        type: integer
+                        example: 0
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: null
+      tags:
+        - Blog
+      security: []
+  '/api/v1/posts/{slug}':
+    get:
+      summary: 'Get post by slug'
+      operationId: getPostBySlug
+      description: ''
+      parameters:
+        -
+          in: query
+          name: slug
+          description: 'Find by slug of post.'
+          example: sed
+          required: false
+          schema:
+            type: string
+            description: 'Find by slug of post.'
+            example: sed
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: true
+                  data: null
+                  message: 'Not found'
+                properties:
+                  error:
+                    type: boolean
+                    example: true
+                  data:
+                    type: string
+                    example: null
+                  message:
+                    type: string
+                    example: 'Not found'
+      tags:
+        - Blog
+      security: []
+    parameters:
+      -
+        in: path
+        name: slug
+        description: 'The slug of the post.'
+        example: est
+        required: true
+        schema:
+          type: string
+  /api/v1/categories/filters:
+    get:
+      summary: 'Filters categories'
+      operationId: filtersCategories
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 7
+                      name: 'Success Stories'
+                      slug: success-stories
+                      url: 'http://gerow.test/blog/success-stories'
+                      description: 'Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.'
+                    -
+                      id: 6
+                      name: Startups
+                      slug: startups
+                      url: 'http://gerow.test/blog/startups'
+                      description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                    -
+                      id: 2
+                      name: 'Market Research'
+                      slug: market-research
+                      url: 'http://gerow.test/blog/market-research'
+                      description: 'Iste reprehenderit et quia nesciunt qui laudantium atque. Non maiores qui veritatis qui nulla ut. Consequatur eius qui quam labore velit. Distinctio sunt fugit aut rerum.'
+                    -
+                      id: 8
+                      name: 'Industry Insights'
+                      slug: industry-insights
+                      url: 'http://gerow.test/blog/industry-insights'
+                      description: 'Id vero commodi deserunt officia. Excepturi mollitia qui rerum quaerat.'
+                    -
+                      id: 9
+                      name: 'Human Resources'
+                      slug: human-resources
+                      url: 'http://gerow.test/blog/human-resources'
+                      description: 'Veritatis voluptatem assumenda quia accusantium est. Nisi tempora omnis reprehenderit est tempore molestiae.'
+                    -
+                      id: 3
+                      name: 'Financial Management'
+                      slug: financial-management
+                      url: 'http://gerow.test/blog/financial-management'
+                      description: 'Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.'
+                    -
+                      id: 4
+                      name: Entrepreneurship
+                      slug: entrepreneurship
+                      url: 'http://gerow.test/blog/entrepreneurship'
+                      description: 'Non accusantium dolores qui est aut voluptas. Nisi non id quo omnis et. Ipsam perspiciatis aut a sunt sed illo. Eum vitae odio voluptate ut doloremque quam.'
+                    -
+                      id: 5
+                      name: 'Career Development'
+                      slug: career-development
+                      url: 'http://gerow.test/blog/career-development'
+                      description: 'Ut provident aut provident temporibus laboriosam rem. Commodi tenetur nemo temporibus quia hic blanditiis sit.'
+                    -
+                      id: 1
+                      name: 'Business Strategy'
+                      slug: business-strategy
+                      url: 'http://gerow.test/blog/business-strategy'
+                      description: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                  links:
+                    first: 'http://gerow.test/api/v1/categories/filters?page=1'
+                    last: 'http://gerow.test/api/v1/categories/filters?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 1
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://gerow.test/api/v1/categories/filters?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    path: 'http://gerow.test/api/v1/categories/filters'
+                    per_page: 10
+                    to: 9
+                    total: 9
+                  error: false
+                  message: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 7
+                        name: 'Success Stories'
+                        slug: success-stories
+                        url: 'http://gerow.test/blog/success-stories'
+                        description: 'Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.'
+                      -
+                        id: 6
+                        name: Startups
+                        slug: startups
+                        url: 'http://gerow.test/blog/startups'
+                        description: 'Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.'
+                      -
+                        id: 2
+                        name: 'Market Research'
+                        slug: market-research
+                        url: 'http://gerow.test/blog/market-research'
+                        description: 'Iste reprehenderit et quia nesciunt qui laudantium atque. Non maiores qui veritatis qui nulla ut. Consequatur eius qui quam labore velit. Distinctio sunt fugit aut rerum.'
+                      -
+                        id: 8
+                        name: 'Industry Insights'
+                        slug: industry-insights
+                        url: 'http://gerow.test/blog/industry-insights'
+                        description: 'Id vero commodi deserunt officia. Excepturi mollitia qui rerum quaerat.'
+                      -
+                        id: 9
+                        name: 'Human Resources'
+                        slug: human-resources
+                        url: 'http://gerow.test/blog/human-resources'
+                        description: 'Veritatis voluptatem assumenda quia accusantium est. Nisi tempora omnis reprehenderit est tempore molestiae.'
+                      -
+                        id: 3
+                        name: 'Financial Management'
+                        slug: financial-management
+                        url: 'http://gerow.test/blog/financial-management'
+                        description: 'Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.'
+                      -
+                        id: 4
+                        name: Entrepreneurship
+                        slug: entrepreneurship
+                        url: 'http://gerow.test/blog/entrepreneurship'
+                        description: 'Non accusantium dolores qui est aut voluptas. Nisi non id quo omnis et. Ipsam perspiciatis aut a sunt sed illo. Eum vitae odio voluptate ut doloremque quam.'
+                      -
+                        id: 5
+                        name: 'Career Development'
+                        slug: career-development
+                        url: 'http://gerow.test/blog/career-development'
+                        description: 'Ut provident aut provident temporibus laboriosam rem. Commodi tenetur nemo temporibus quia hic blanditiis sit.'
+                      -
+                        id: 1
+                        name: 'Business Strategy'
+                        slug: business-strategy
+                        url: 'http://gerow.test/blog/business-strategy'
+                        description: 'Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 7
+                        name:
+                          type: string
+                          example: 'Success Stories'
+                        slug:
+                          type: string
+                          example: success-stories
+                        url:
+                          type: string
+                          example: 'http://gerow.test/blog/success-stories'
+                        description:
+                          type: string
+                          example: 'Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://gerow.test/api/v1/categories/filters?page=1'
+                      last:
+                        type: string
+                        example: 'http://gerow.test/api/v1/categories/filters?page=1'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://gerow.test/api/v1/categories/filters?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://gerow.test/api/v1/categories/filters'
+                      per_page:
+                        type: integer
+                        example: 10
+                      to:
+                        type: integer
+                        example: 9
+                      total:
+                        type: integer
+                        example: 9
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: null
+      tags:
+        - Blog
+      security: []
+  '/api/v1/categories/{slug}':
+    get:
+      summary: 'Get category by slug'
+      operationId: getCategoryBySlug
+      description: ''
+      parameters:
+        -
+          in: query
+          name: slug
+          description: 'Find by slug of category.'
+          example: sunt
+          required: false
+          schema:
+            type: string
+            description: 'Find by slug of category.'
+            example: sunt
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: true
+                  data: null
+                  message: 'Not found'
+                properties:
+                  error:
+                    type: boolean
+                    example: true
+                  data:
+                    type: string
+                    example: null
+                  message:
+                    type: string
+                    example: 'Not found'
+      tags:
+        - Blog
+      security: []
+    parameters:
+      -
+        in: path
+        name: slug
+        description: 'The slug of the category.'
+        example: magni
+        required: true
+        schema:
+          type: string
+  /api/v1/me:
+    get:
+      summary: 'Get the user profile information.'
+      operationId: getTheUserProfileInformation
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: true
+                  data: null
+                  message: Unauthenticated.
+                properties:
+                  error:
+                    type: boolean
+                    example: true
+                  data:
+                    type: string
+                    example: null
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Profile
+    put:
+      summary: 'Update profile'
+      operationId: updateProfile
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: 'First name.'
+                  example: enim
+                last_name:
+                  type: string
+                  description: 'Last name.'
+                  example: iure
+                phone:
+                  type: string
+                  description: Phone.
+                  example: sint
+                dob:
+                  type: string
+                  description: 'Date of birth.'
+                  example: dignissimos
+                gender:
+                  type: string
+                  description: Gender
+                  example: provident
+                description:
+                  type: string
+                  description: Description
+                  example: 'Quasi ipsa error nam consequatur.'
+                email:
+                  type: string
+                  description: Email.
+                  example: alexane.beier@example.com
+              required:
+                - first_name
+                - last_name
+                - phone
+                - dob
+  /api/v1/update/avatar:
+    post:
+      summary: 'Update Avatar'
+      operationId: updateAvatar
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Profile
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+                  description: 'Avatar file.'
+              required:
+                - avatar
+  /api/v1/update/password:
+    put:
+      summary: 'Update password'
+      operationId: updatePassword
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  description: 'The new password of user.'
+                  example: 'L^tu){pI8'
+              required:
+                - password
+tags:
+  -
+    name: Authentication
+    description: ''
+  -
+    name: Blog
+    description: ''
+  -
+    name: Profile
+    description: ''

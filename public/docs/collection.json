@@ -1,0 +1,942 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/gerow.test"
+        }
+    ],
+    "info": {
+        "name": "Your App",
+        "_postman_id": "61a2c693-6bc0-477a-a68e-d811c52a80f0",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Authentication",
+            "description": "",
+            "item": [
+                {
+                    "name": "Register",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/register",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/register"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"first_name\":\"officiis\",\"last_name\":\"pariatur\",\"email\":\"harley.bechtelar@example.net\",\"password\":\"yg|fKSL\",\"phone\":\"est\",\"password_confirmation\":\"autem\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"error\": false,\n\"data\": null,\n\"message\": \"Registered successfully! We emailed you to verify your account!\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n\"message\": \"The given data was invalid.\",\n\"errors\": {\n    \"first_name\": [\n        \"The first name field is required.\"\n    ],\n    \"last_name\": [\n        \"The last name field is required.\"\n    ],\n    \"email\": [\n        \"The email field is required.\"\n    ],\n    \"password\": [\n        \"The password field is required.\"\n    ]\n  }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Login",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"e.g: abc@example.com\",\"password\":\"f&XX!`Ql\",\"login\":\"inventore\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"error\": false,\n\"data\": {\n   \"token\": \"1|aF5s7p3xxx1lVL8hkSrPN72m4wPVpTvTs...\"\n},\n\"message\": null\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Forgot password",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/password\/forgot",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/password\/forgot"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"trantow.kaley@example.org\"}"
+                        },
+                        "description": "Send a reset link to the given user.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Resend email verification",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/resend-verify-account-email",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/resend-verify-account-email"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"pagac.vincent@example.com\"}"
+                        },
+                        "description": "Resend the email verification notification.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Logout",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/logout"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"error\":true,\"data\":null,\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Blog",
+            "description": "",
+            "item": [
+                {
+                    "name": "Search post",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/search",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/search"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"q\":\"qui\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"error\":false,\"data\":{\"items\":{\"current_page\":1,\"data\":[{\"id\":10,\"name\":\"Building a Strong Employer Brand for Talent Acquisition\",\"description\":\"Explore proven strategies and actionable insights to drive growth and thrive in the ever-evolving business landscape of 2023.\",\"content\":\"<p>when an unknown printer took ar galley offer type year anddey scrambled  make type aewer specimen book bethas survived not only five when annery unknown printer.eed a little help from our friends from time to time. Although we offer the one-stop convenience.<\\\/p>\\n<p>eed a little help from our friends from time to time. Although we offer the one-stop convenience of annery integrated range of legal, financial services under one roof, there are occasions when our clients areaneed specia- list advice beyond the scope of our own expertise.<\\\/p>\\n<blockquote>\\n    <p>\\u201c urabitur varius eros rutrum consequat Mauris aewa sollicitudin enim condimentum luctus enim justo non molestie nisl \\u201d<\\\/p>\\n<\\\/blockquote>\\n<h4 class=\\\"title-two\\\">Speed Optimized<\\\/h4>\\n<p>when an unknown printer took a galley of type and scrambled it to make a type specimen bookhas a not only five centuries, but also the leap into electronic typesetting, remaining essentially unchan galley of type and scrambled it to make a type specimen book.<\\\/p>\\n<div class=\\\"bd-inner-wrap\\\">\\n    <div class=\\\"row align-items-center\\\">\\n        <div class=\\\"col-46\\\">\\n            <div class=\\\"thumb\\\">\\n                <img src=\\\"http:\\\/\\\/gerow.test\\\/storage\\\/news\\\/12.png\\\" alt=\\\"News\\\">\\n                <a href=\\\"https:\\\/\\\/www.youtube.com\\\/watch?v=v2qeqkKgw7U\\\" class=\\\"play-btn popup-video\\\"><i class=\\\"fas fa-play\\\"><\\\/i><\\\/a>\\n            <\\\/div>\\n        <\\\/div>\\n        <div class=\\\"col-54\\\">\\n            <div class=\\\"content\\\">\\n                <h3 class=\\\"title-two\\\">Conduct replied off whether arrived adapted<\\\/h3>\\n                <p>when an unknown printer took a galley type remaining essentially unchan galley of type and scrambled it to make a type specimen book.<\\\/p>\\n                <ul class=\\\"list-wrap\\\">\\n                    <li><i class=\\\"fas fa-check-circle\\\"><\\\/i>Commercial Property Insurance<\\\/li>\\n                    <li><i class=\\\"fas fa-check-circle\\\"><\\\/i>Budget Friendly Theme<\\\/li>\\n                    <li><i class=\\\"fas fa-check-circle\\\"><\\\/i>Happy Customers<\\\/li>\\n                <\\\/ul>\\n            <\\\/div>\\n        <\\\/div>\\n    <\\\/div>\\n<\\\/div>\\n<p>when an unknown printer took a galley of type and scrambled it to make a type specimen bookhas a not only five centuries, but also the leap into electronic typesetting, remaining essentially unchan galley of type and scrambled it to make a type specimen book.<\\\/p>\\n\",\"status\":{\"value\":\"published\",\"label\":\"Published\"},\"author_id\":1,\"author_type\":\"Botble\\\\ACL\\\\Models\\\\User\",\"is_featured\":0,\"image\":\"news\\\/10.png\",\"views\":971,\"format_type\":null,\"created_at\":\"2024-08-27T11:13:33.000000Z\",\"updated_at\":\"2024-08-27T11:13:33.000000Z\",\"slugable\":{\"id\":65,\"key\":\"building-a-strong-employer-brand-for-talent-acquisition\",\"reference_type\":\"Botble\\\\Blog\\\\Models\\\\Post\",\"reference_id\":10,\"prefix\":\"blog\"}}],\"first_page_url\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/search?page=1\",\"from\":1,\"last_page\":1,\"last_page_url\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/search?page=1\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/search?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":null,\"path\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/search\",\"per_page\":10,\"prev_page_url\":null,\"to\":1,\"total\":1},\"query\":\"qui\",\"count\":1},\"message\":null}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "List posts",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/posts",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/posts"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "58"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"name\":\"10 Strategies for Business Growth in 2023\",\"slug\":\"10-strategies-for-business-growth-in-2023\",\"description\":\"Get expert advice on how small businesses can navigate tax season efficiently, minimize liabilities, and stay compliant with tax regulations.\",\"image\":\"http:\\\/\\\/gerow.test\\\/storage\\\/news\\\/1.png\",\"categories\":[{\"id\":1,\"name\":\"Business Strategy\",\"slug\":\"business-strategy\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/business-strategy\",\"description\":\"Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.\"},{\"id\":6,\"name\":\"Startups\",\"slug\":\"startups\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/startups\",\"description\":\"Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.\"}],\"tags\":[{\"id\":1,\"name\":\"Strategy\",\"slug\":\"strategy\",\"description\":null},{\"id\":2,\"name\":\"Marketing\",\"slug\":\"marketing\",\"description\":null},{\"id\":3,\"name\":\"Finance\",\"slug\":\"finance\",\"description\":null}],\"created_at\":\"2024-08-27T11:13:33.000000Z\",\"updated_at\":\"2024-08-27T11:13:33.000000Z\"},{\"id\":2,\"name\":\"Navigating Tax Season: Tips for Small Businesses\",\"slug\":\"navigating-tax-season-tips-for-small-businesses\",\"description\":\"Get expert advice on how small businesses can navigate tax season efficiently, minimize liabilities, and stay compliant with tax regulations.\",\"image\":\"http:\\\/\\\/gerow.test\\\/storage\\\/news\\\/2.png\",\"categories\":[{\"id\":3,\"name\":\"Financial Management\",\"slug\":\"financial-management\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/financial-management\",\"description\":\"Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.\"},{\"id\":6,\"name\":\"Startups\",\"slug\":\"startups\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/startups\",\"description\":\"Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.\"}],\"tags\":[{\"id\":1,\"name\":\"Strategy\",\"slug\":\"strategy\",\"description\":null},{\"id\":2,\"name\":\"Marketing\",\"slug\":\"marketing\",\"description\":null},{\"id\":3,\"name\":\"Finance\",\"slug\":\"finance\",\"description\":null}],\"created_at\":\"2024-08-27T11:13:33.000000Z\",\"updated_at\":\"2024-08-27T11:13:33.000000Z\"},{\"id\":3,\"name\":\"The Power of Data Analytics in Business Decision-Making\",\"slug\":\"the-power-of-data-analytics-in-business-decision-making\",\"description\":\"Learn how businesses can leverage technology to gain a competitive edge, streamline operations, and deliver exceptional value to customers.\",\"image\":\"http:\\\/\\\/gerow.test\\\/storage\\\/news\\\/3.png\",\"categories\":[{\"id\":1,\"name\":\"Business Strategy\",\"slug\":\"business-strategy\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/business-strategy\",\"description\":\"Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.\"},{\"id\":6,\"name\":\"Startups\",\"slug\":\"startups\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/startups\",\"description\":\"Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.\"}],\"tags\":[{\"id\":1,\"name\":\"Strategy\",\"slug\":\"strategy\",\"description\":null},{\"id\":2,\"name\":\"Marketing\",\"slug\":\"marketing\",\"description\":null},{\"id\":3,\"name\":\"Finance\",\"slug\":\"finance\",\"description\":null}],\"created_at\":\"2024-08-27T11:13:33.000000Z\",\"updated_at\":\"2024-08-27T11:13:33.000000Z\"},{\"id\":4,\"name\":\"How to Create a Winning Marketing Plan\",\"slug\":\"how-to-create-a-winning-marketing-plan\",\"description\":\"Learn how businesses can leverage technology to gain a competitive edge, streamline operations, and deliver exceptional value to customers.\",\"image\":\"http:\\\/\\\/gerow.test\\\/storage\\\/news\\\/4.png\",\"categories\":[{\"id\":1,\"name\":\"Business Strategy\",\"slug\":\"business-strategy\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/business-strategy\",\"description\":\"Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.\"},{\"id\":7,\"name\":\"Success Stories\",\"slug\":\"success-stories\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/success-stories\",\"description\":\"Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.\"}],\"tags\":[{\"id\":1,\"name\":\"Strategy\",\"slug\":\"strategy\",\"description\":null},{\"id\":2,\"name\":\"Marketing\",\"slug\":\"marketing\",\"description\":null},{\"id\":3,\"name\":\"Finance\",\"slug\":\"finance\",\"description\":null}],\"created_at\":\"2024-08-27T11:13:33.000000Z\",\"updated_at\":\"2024-08-27T11:13:33.000000Z\"},{\"id\":5,\"name\":\"Mastering the Art of Financial Planning for Entrepreneurs\",\"slug\":\"mastering-the-art-of-financial-planning-for-entrepreneurs\",\"description\":\"Learn the essential steps and elements to craft a winning marketing plan that effectively reaches your target audience and drives results.\",\"image\":\"http:\\\/\\\/gerow.test\\\/storage\\\/news\\\/5.png\",\"categories\":[{\"id\":4,\"name\":\"Entrepreneurship\",\"slug\":\"entrepreneurship\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/entrepreneurship\",\"description\":\"Non accusantium dolores qui est aut voluptas. Nisi non id quo omnis et. Ipsam perspiciatis aut a sunt sed illo. Eum vitae odio voluptate ut doloremque quam.\"},{\"id\":6,\"name\":\"Startups\",\"slug\":\"startups\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/startups\",\"description\":\"Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.\"}],\"tags\":[{\"id\":1,\"name\":\"Strategy\",\"slug\":\"strategy\",\"description\":null},{\"id\":2,\"name\":\"Marketing\",\"slug\":\"marketing\",\"description\":null},{\"id\":3,\"name\":\"Finance\",\"slug\":\"finance\",\"description\":null}],\"created_at\":\"2024-08-27T11:13:33.000000Z\",\"updated_at\":\"2024-08-27T11:13:33.000000Z\"},{\"id\":6,\"name\":\"The Role of Innovation in Modern Business\",\"slug\":\"the-role-of-innovation-in-modern-business\",\"description\":\"Get expert advice on how small businesses can navigate tax season efficiently, minimize liabilities, and stay compliant with tax regulations.\",\"image\":\"http:\\\/\\\/gerow.test\\\/storage\\\/news\\\/6.png\",\"categories\":[{\"id\":2,\"name\":\"Market Research\",\"slug\":\"market-research\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/market-research\",\"description\":\"Iste reprehenderit et quia nesciunt qui laudantium atque. Non maiores qui veritatis qui nulla ut. Consequatur eius qui quam labore velit. Distinctio sunt fugit aut rerum.\"},{\"id\":7,\"name\":\"Success Stories\",\"slug\":\"success-stories\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/success-stories\",\"description\":\"Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.\"}],\"tags\":[{\"id\":1,\"name\":\"Strategy\",\"slug\":\"strategy\",\"description\":null},{\"id\":2,\"name\":\"Marketing\",\"slug\":\"marketing\",\"description\":null},{\"id\":3,\"name\":\"Finance\",\"slug\":\"finance\",\"description\":null}],\"created_at\":\"2024-08-27T11:13:33.000000Z\",\"updated_at\":\"2024-08-27T11:13:33.000000Z\"},{\"id\":7,\"name\":\"Startup Success Stories: Lessons from Industry Leaders\",\"slug\":\"startup-success-stories-lessons-from-industry-leaders\",\"description\":\"Gain insights into the art of financial planning tailored to entrepreneurs, helping you secure your financial future and business success.\",\"image\":\"http:\\\/\\\/gerow.test\\\/storage\\\/news\\\/7.png\",\"categories\":[{\"id\":1,\"name\":\"Business Strategy\",\"slug\":\"business-strategy\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/business-strategy\",\"description\":\"Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.\"},{\"id\":6,\"name\":\"Startups\",\"slug\":\"startups\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/startups\",\"description\":\"Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.\"}],\"tags\":[{\"id\":1,\"name\":\"Strategy\",\"slug\":\"strategy\",\"description\":null},{\"id\":2,\"name\":\"Marketing\",\"slug\":\"marketing\",\"description\":null},{\"id\":3,\"name\":\"Finance\",\"slug\":\"finance\",\"description\":null}],\"created_at\":\"2024-08-27T11:13:33.000000Z\",\"updated_at\":\"2024-08-27T11:13:33.000000Z\"},{\"id\":8,\"name\":\"Balancing Act: Work-Life Integration for Business Owners\",\"slug\":\"balancing-act-work-life-integration-for-business-owners\",\"description\":\"Get expert advice on how small businesses can navigate tax season efficiently, minimize liabilities, and stay compliant with tax regulations.\",\"image\":\"http:\\\/\\\/gerow.test\\\/storage\\\/news\\\/8.png\",\"categories\":[{\"id\":3,\"name\":\"Financial Management\",\"slug\":\"financial-management\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/financial-management\",\"description\":\"Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.\"},{\"id\":7,\"name\":\"Success Stories\",\"slug\":\"success-stories\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/success-stories\",\"description\":\"Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.\"}],\"tags\":[{\"id\":1,\"name\":\"Strategy\",\"slug\":\"strategy\",\"description\":null},{\"id\":2,\"name\":\"Marketing\",\"slug\":\"marketing\",\"description\":null},{\"id\":3,\"name\":\"Finance\",\"slug\":\"finance\",\"description\":null}],\"created_at\":\"2024-08-27T11:13:33.000000Z\",\"updated_at\":\"2024-08-27T11:13:33.000000Z\"},{\"id\":9,\"name\":\"The Impact of Sustainable Practices on Business Sustainability\",\"slug\":\"the-impact-of-sustainable-practices-on-business-sustainability\",\"description\":\"Gain insights into the art of financial planning tailored to entrepreneurs, helping you secure your financial future and business success.\",\"image\":\"http:\\\/\\\/gerow.test\\\/storage\\\/news\\\/9.png\",\"categories\":[{\"id\":1,\"name\":\"Business Strategy\",\"slug\":\"business-strategy\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/business-strategy\",\"description\":\"Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.\"},{\"id\":5,\"name\":\"Career Development\",\"slug\":\"career-development\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/career-development\",\"description\":\"Ut provident aut provident temporibus laboriosam rem. Commodi tenetur nemo temporibus quia hic blanditiis sit.\"}],\"tags\":[{\"id\":1,\"name\":\"Strategy\",\"slug\":\"strategy\",\"description\":null},{\"id\":2,\"name\":\"Marketing\",\"slug\":\"marketing\",\"description\":null},{\"id\":3,\"name\":\"Finance\",\"slug\":\"finance\",\"description\":null}],\"created_at\":\"2024-08-27T11:13:33.000000Z\",\"updated_at\":\"2024-08-27T11:13:33.000000Z\"},{\"id\":10,\"name\":\"Building a Strong Employer Brand for Talent Acquisition\",\"slug\":\"building-a-strong-employer-brand-for-talent-acquisition\",\"description\":\"Explore proven strategies and actionable insights to drive growth and thrive in the ever-evolving business landscape of 2023.\",\"image\":\"http:\\\/\\\/gerow.test\\\/storage\\\/news\\\/10.png\",\"categories\":[{\"id\":3,\"name\":\"Financial Management\",\"slug\":\"financial-management\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/financial-management\",\"description\":\"Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.\"},{\"id\":5,\"name\":\"Career Development\",\"slug\":\"career-development\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/career-development\",\"description\":\"Ut provident aut provident temporibus laboriosam rem. Commodi tenetur nemo temporibus quia hic blanditiis sit.\"}],\"tags\":[{\"id\":1,\"name\":\"Strategy\",\"slug\":\"strategy\",\"description\":null},{\"id\":2,\"name\":\"Marketing\",\"slug\":\"marketing\",\"description\":null},{\"id\":3,\"name\":\"Finance\",\"slug\":\"finance\",\"description\":null}],\"created_at\":\"2024-08-27T11:13:33.000000Z\",\"updated_at\":\"2024-08-27T11:13:33.000000Z\"}],\"links\":{\"first\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/posts?page=1\",\"last\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/posts?page=2\",\"prev\":null,\"next\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/posts?page=2\"},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":2,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/posts?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/posts?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/posts?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/posts\",\"per_page\":10,\"to\":10,\"total\":12},\"error\":false,\"message\":null}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "List categories",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/categories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/categories"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "57"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"name\":\"Business Strategy\",\"slug\":\"business-strategy\",\"description\":\"Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.\",\"children\":[],\"parent\":{\"id\":null,\"name\":null,\"slug\":\"\",\"url\":\"http:\\\/\\\/gerow.test\",\"description\":null}},{\"id\":2,\"name\":\"Market Research\",\"slug\":\"market-research\",\"description\":\"Iste reprehenderit et quia nesciunt qui laudantium atque. Non maiores qui veritatis qui nulla ut. Consequatur eius qui quam labore velit. Distinctio sunt fugit aut rerum.\",\"children\":[{\"id\":3,\"name\":\"Financial Management\",\"slug\":\"financial-management\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/financial-management\",\"description\":\"Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.\"}],\"parent\":{\"id\":null,\"name\":null,\"slug\":\"\",\"url\":\"http:\\\/\\\/gerow.test\",\"description\":null}},{\"id\":3,\"name\":\"Financial Management\",\"slug\":\"financial-management\",\"description\":\"Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.\",\"children\":[],\"parent\":{\"id\":2,\"name\":\"Market Research\",\"slug\":\"market-research\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/market-research\",\"description\":\"Iste reprehenderit et quia nesciunt qui laudantium atque. Non maiores qui veritatis qui nulla ut. Consequatur eius qui quam labore velit. Distinctio sunt fugit aut rerum.\"}},{\"id\":4,\"name\":\"Entrepreneurship\",\"slug\":\"entrepreneurship\",\"description\":\"Non accusantium dolores qui est aut voluptas. Nisi non id quo omnis et. Ipsam perspiciatis aut a sunt sed illo. Eum vitae odio voluptate ut doloremque quam.\",\"children\":[{\"id\":5,\"name\":\"Career Development\",\"slug\":\"career-development\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/career-development\",\"description\":\"Ut provident aut provident temporibus laboriosam rem. Commodi tenetur nemo temporibus quia hic blanditiis sit.\"}],\"parent\":{\"id\":null,\"name\":null,\"slug\":\"\",\"url\":\"http:\\\/\\\/gerow.test\",\"description\":null}},{\"id\":5,\"name\":\"Career Development\",\"slug\":\"career-development\",\"description\":\"Ut provident aut provident temporibus laboriosam rem. Commodi tenetur nemo temporibus quia hic blanditiis sit.\",\"children\":[],\"parent\":{\"id\":4,\"name\":\"Entrepreneurship\",\"slug\":\"entrepreneurship\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/entrepreneurship\",\"description\":\"Non accusantium dolores qui est aut voluptas. Nisi non id quo omnis et. Ipsam perspiciatis aut a sunt sed illo. Eum vitae odio voluptate ut doloremque quam.\"}},{\"id\":6,\"name\":\"Startups\",\"slug\":\"startups\",\"description\":\"Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.\",\"children\":[{\"id\":7,\"name\":\"Success Stories\",\"slug\":\"success-stories\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/success-stories\",\"description\":\"Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.\"},{\"id\":8,\"name\":\"Industry Insights\",\"slug\":\"industry-insights\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/industry-insights\",\"description\":\"Id vero commodi deserunt officia. Excepturi mollitia qui rerum quaerat.\"},{\"id\":9,\"name\":\"Human Resources\",\"slug\":\"human-resources\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/human-resources\",\"description\":\"Veritatis voluptatem assumenda quia accusantium est. Nisi tempora omnis reprehenderit est tempore molestiae.\"}],\"parent\":{\"id\":null,\"name\":null,\"slug\":\"\",\"url\":\"http:\\\/\\\/gerow.test\",\"description\":null}},{\"id\":7,\"name\":\"Success Stories\",\"slug\":\"success-stories\",\"description\":\"Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.\",\"children\":[],\"parent\":{\"id\":6,\"name\":\"Startups\",\"slug\":\"startups\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/startups\",\"description\":\"Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.\"}},{\"id\":8,\"name\":\"Industry Insights\",\"slug\":\"industry-insights\",\"description\":\"Id vero commodi deserunt officia. Excepturi mollitia qui rerum quaerat.\",\"children\":[],\"parent\":{\"id\":6,\"name\":\"Startups\",\"slug\":\"startups\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/startups\",\"description\":\"Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.\"}},{\"id\":9,\"name\":\"Human Resources\",\"slug\":\"human-resources\",\"description\":\"Veritatis voluptatem assumenda quia accusantium est. Nisi tempora omnis reprehenderit est tempore molestiae.\",\"children\":[],\"parent\":{\"id\":6,\"name\":\"Startups\",\"slug\":\"startups\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/startups\",\"description\":\"Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.\"}}],\"links\":{\"first\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/categories?page=1\",\"last\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/categories?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/categories?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/categories\",\"per_page\":10,\"to\":9,\"total\":9},\"error\":false,\"message\":null}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "List tags",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/tags",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/tags"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "56"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"name\":\"Strategy\",\"slug\":\"strategy\",\"description\":null},{\"id\":2,\"name\":\"Marketing\",\"slug\":\"marketing\",\"description\":null},{\"id\":3,\"name\":\"Finance\",\"slug\":\"finance\",\"description\":null},{\"id\":4,\"name\":\"Management\",\"slug\":\"management\",\"description\":null},{\"id\":5,\"name\":\"Networking\",\"slug\":\"networking\",\"description\":null},{\"id\":6,\"name\":\"Leadership\",\"slug\":\"leadership\",\"description\":null},{\"id\":7,\"name\":\"Technology\",\"slug\":\"technology\",\"description\":null},{\"id\":8,\"name\":\"Investment\",\"slug\":\"investment\",\"description\":null},{\"id\":9,\"name\":\"Branding\",\"slug\":\"branding\",\"description\":null},{\"id\":10,\"name\":\"Sales\",\"slug\":\"sales\",\"description\":null}],\"links\":{\"first\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/tags?page=1\",\"last\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/tags?page=2\",\"prev\":null,\"next\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/tags?page=2\"},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":2,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/tags?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/tags?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/tags?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/tags\",\"per_page\":10,\"to\":10,\"total\":11},\"error\":false,\"message\":null}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Filters posts",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/posts\/filters",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "14",
+                                    "description": "Current page of the collection. Default: 1",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "16",
+                                    "description": "Maximum number of items to be returned in result set.Default: 10",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "dolor",
+                                    "description": "Limit results to those matching a string.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "after",
+                                    "value": "nisi",
+                                    "description": "Limit response to posts published after a given ISO8601 compliant date.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "author",
+                                    "value": "quis",
+                                    "description": "Limit result set to posts assigned to specific authors.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "author_exclude",
+                                    "value": "accusamus",
+                                    "description": "Ensure result set excludes posts assigned to specific authors.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "before",
+                                    "value": "iure",
+                                    "description": "Limit response to posts published before a given ISO8601 compliant date.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "exclude",
+                                    "value": "voluptatem",
+                                    "description": "Ensure result set excludes specific IDs.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "include",
+                                    "value": "dicta",
+                                    "description": "Limit result set to specific IDs.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "order",
+                                    "value": "necessitatibus",
+                                    "description": "Order sort attribute ascending or descending. Default: desc .One of: asc, desc",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "order_by",
+                                    "value": "ducimus",
+                                    "description": "Sort collection by object attribute. Default: updated_at. One of: author, created_at, updated_at, id,  slug, title",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "categories",
+                                    "value": "enim",
+                                    "description": "Limit result set to all items that have the specified term assigned in the categories taxonomy.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "categories_exclude",
+                                    "value": "consequatur",
+                                    "description": "Limit result set to all items except those that have the specified term assigned in the categories taxonomy.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "tags",
+                                    "value": "qui",
+                                    "description": "Limit result set to all items that have the specified term assigned in the tags taxonomy.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "tags_exclude",
+                                    "value": "non",
+                                    "description": "Limit result set to all items except those that have the specified term assigned in the tags taxonomy.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "featured",
+                                    "value": "possimus",
+                                    "description": "Limit result set to items that are sticky.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/posts\/filters?page=14&per_page=16&search=dolor&after=nisi&author=quis&author_exclude=accusamus&before=iure&exclude=voluptatem&include=dicta&order=necessitatibus&order_by=ducimus&categories=enim&categories_exclude=consequatur&tags=qui&tags_exclude=non&featured=possimus"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "55"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[],\"links\":{\"first\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/posts\\\/filters?page=1\",\"last\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/posts\\\/filters?page=1\",\"prev\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/posts\\\/filters?page=13\",\"next\":null},\"meta\":{\"current_page\":14,\"from\":null,\"last_page\":1,\"links\":[{\"url\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/posts\\\/filters?page=13\",\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/posts\\\/filters?page=1\",\"label\":\"1\",\"active\":false},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/posts\\\/filters\",\"per_page\":16,\"to\":null,\"total\":0},\"error\":false,\"message\":null}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get post by slug",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/posts\/:slug",
+                            "query": [
+                                {
+                                    "key": "slug",
+                                    "value": "sed",
+                                    "description": "Find by slug of post.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/posts\/:slug?slug=sed",
+                            "variable": [
+                                {
+                                    "id": "slug",
+                                    "key": "slug",
+                                    "value": "est",
+                                    "description": "The slug of the post."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "54"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\"error\":true,\"data\":null,\"message\":\"Not found\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Filters categories",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/categories\/filters",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/categories\/filters"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "53"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":7,\"name\":\"Success Stories\",\"slug\":\"success-stories\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/success-stories\",\"description\":\"Aut in quae vero. Dolores dicta doloribus autem ea provident sit qui magni. Qui repellendus quo rem quas sed consequatur. Cum iusto eos molestiae error doloremque minima eaque.\"},{\"id\":6,\"name\":\"Startups\",\"slug\":\"startups\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/startups\",\"description\":\"Ex fugiat quia eum quaerat aliquid pariatur. Quas aut voluptate sit officia earum. Est aut voluptas et qui. Ratione nostrum qui accusamus eius temporibus ducimus natus.\"},{\"id\":2,\"name\":\"Market Research\",\"slug\":\"market-research\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/market-research\",\"description\":\"Iste reprehenderit et quia nesciunt qui laudantium atque. Non maiores qui veritatis qui nulla ut. Consequatur eius qui quam labore velit. Distinctio sunt fugit aut rerum.\"},{\"id\":8,\"name\":\"Industry Insights\",\"slug\":\"industry-insights\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/industry-insights\",\"description\":\"Id vero commodi deserunt officia. Excepturi mollitia qui rerum quaerat.\"},{\"id\":9,\"name\":\"Human Resources\",\"slug\":\"human-resources\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/human-resources\",\"description\":\"Veritatis voluptatem assumenda quia accusantium est. Nisi tempora omnis reprehenderit est tempore molestiae.\"},{\"id\":3,\"name\":\"Financial Management\",\"slug\":\"financial-management\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/financial-management\",\"description\":\"Illo ut quod maiores pariatur. Facilis sit esse deleniti perspiciatis et praesentium eaque ipsa. Et est cumque ut deleniti aspernatur et.\"},{\"id\":4,\"name\":\"Entrepreneurship\",\"slug\":\"entrepreneurship\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/entrepreneurship\",\"description\":\"Non accusantium dolores qui est aut voluptas. Nisi non id quo omnis et. Ipsam perspiciatis aut a sunt sed illo. Eum vitae odio voluptate ut doloremque quam.\"},{\"id\":5,\"name\":\"Career Development\",\"slug\":\"career-development\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/career-development\",\"description\":\"Ut provident aut provident temporibus laboriosam rem. Commodi tenetur nemo temporibus quia hic blanditiis sit.\"},{\"id\":1,\"name\":\"Business Strategy\",\"slug\":\"business-strategy\",\"url\":\"http:\\\/\\\/gerow.test\\\/blog\\\/business-strategy\",\"description\":\"Itaque aut exercitationem aut quo et officia. Non omnis et non necessitatibus eius recusandae.\"}],\"links\":{\"first\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/categories\\\/filters?page=1\",\"last\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/categories\\\/filters?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/categories\\\/filters?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/gerow.test\\\/api\\\/v1\\\/categories\\\/filters\",\"per_page\":10,\"to\":9,\"total\":9},\"error\":false,\"message\":null}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get category by slug",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/categories\/:slug",
+                            "query": [
+                                {
+                                    "key": "slug",
+                                    "value": "sunt",
+                                    "description": "Find by slug of category.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/categories\/:slug?slug=sunt",
+                            "variable": [
+                                {
+                                    "id": "slug",
+                                    "key": "slug",
+                                    "value": "magni",
+                                    "description": "The slug of the category."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "52"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\"error\":true,\"data\":null,\"message\":\"Not found\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Profile",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get the user profile information.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/me",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/me"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"error\":true,\"data\":null,\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update profile",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/me",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/me"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"first_name\":\"enim\",\"last_name\":\"iure\",\"phone\":\"sint\",\"dob\":\"dignissimos\",\"gender\":\"provident\",\"description\":\"Quasi ipsa error nam consequatur.\",\"email\":\"alexane.beier@example.com\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Avatar",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/update\/avatar",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/update\/avatar"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "avatar",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update password",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/update\/password",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/update\/password"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"password\":\"L^tu){pI8\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}
